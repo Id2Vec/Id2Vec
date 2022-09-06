@@ -1,0 +1,21 @@
+python -m src.run \
+    --exp_name=id2vec-textcnn_5 \
+    --model_name_or_path=microsoft/codebert-base-mlm \
+    --tokenizer_name=microsoft/codebert-base-mlm \
+    --output_dir=./saved_models/textcnn_5 \
+    --do_train \
+    --do_lower_case \
+    --do_freeze_encoder \
+    --textcnn-type 2 \
+    --train_data_file=dataset/new_pt_train.jsonl \
+    --eval_data_file=dataset/new_pt_valid.jsonl \
+    --num_train_epochs 40 \
+    --block_size 512 \
+    --cluster_weight 100 \
+    --train_batch_size 32 \
+    --eval_batch_size 32 \
+    --learning_rate 2e-6 \
+    --max_grad_norm 1.0 \
+    --gpu \
+    --eval_interval 1000 \
+    --seed 123456  2>&1 | tee train.log
